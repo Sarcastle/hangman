@@ -8,7 +8,12 @@
         <link href="index.css" rel="stylesheet" />
     </head>
     <body>
+        <div class="game-status">
+            <button class="new-game-btn" onclick="startNewGame()">New Game</button>
+            <label id="lblGameStatus" class="game-status">CLICK FOR NEW GAME</label>
+        </div>
         <div class="all-keyboard"> 
+            <div id="Word-blanks"></div>
             <div class="keyboard-row1">
                 <button onclick="btnLetterClick('Q')" class="char-btn">Q</button> 
                 <button onclick="btnLetterClick('W')" class="char-btn">W</button>
@@ -45,6 +50,12 @@
                 <button onclick="btnLetterClick('N')" class="char-btn">N</button>
                 <button onclick="btnLetterClick('M')" class="char-btn">M</button>              
             </div>
+        </div>
+        <div class="gallow"> 
+            <canvas id="player-gallow" height="200px" width="150px">\
+                "Browser Not Supported"
+
+            </canvas>
         </div>
     </body>
 </html>
