@@ -1,3 +1,5 @@
+let currentword = '';
+
 const words = ['able', 'about', 'account', 'acid', 'across', 'act', 'addition', 'adjustment', 
                 'advertisement', 'after', 'again', 'against', 'agreement', 'air', 'all', 'almost', 
                 'among', 'amount', 'amusement', 'and', 'angle', 'angry', 'animal', 'answer', 'ant', 
@@ -63,7 +65,7 @@ const words = ['able', 'about', 'account', 'acid', 'across', 'act', 'addition', 
                 'room', 'root', 'rough', 'round', 'rub', 'rule', 'run', 'sad', 'safe', 'sail', 'salt', 'same', 
                 'sand', 'say', 'scale', 'school', 'science', 'scissors', 'screw', 'sea', 'seat', 'second', 
                 'secret', 'secretary', 'see', 'seed', 'seem', 'selection', 'self', 'send', 'sense', 'separate', 
-                'serious', 'servant', 'sex', 'shade', 'shake', 'shame', 'sharp', 'sheep', 'shelf', 'ship', 
+                'serious', 'servant', 'shade', 'shake', 'shame', 'sharp', 'sheep', 'shelf', 'ship', 
                 'shirt', 'shock', 'shoe', 'short', 'shut', 'side', 'sign', 'silk', 'silver', 'simple', 
                 'sister', 'size', 'skin', 'skirt', 'sky', 'sleep', 'slip', 'slope', 'slow', 'small', 'smash', 
                 'smell', 'smile', 'smoke', 'smooth', 'snake', 'sneeze', 'snow', 'so', 'soap', 'society', 
@@ -84,7 +86,7 @@ const words = ['able', 'about', 'account', 'acid', 'across', 'act', 'addition', 
                 'west', 'wet', 'wheel', 'when', 'where', 'while', 'whip', 'whistle', 'white', 'who', 
                 'why', 'wide', 'will', 'wind', 'window', 'wine', 'wing', 'winter', 'wire', 'wise', 'with', 
                 'woman', 'wood', 'wool', 'word', 'work', 'worm', 'wound', 'writing', 'wrong', 'year', 
-                'yellow', 'yes', 'yesterday', 'you', 'young', 'android', ];
+                'yellow', 'yes', 'yesterday', 'you', 'young', 'android'];
 
 document.addEventListener('DOMContentLoaded', e => {
     drawGallow();
@@ -110,14 +112,20 @@ const drawGallow = () => {
     //nubline
     context.moveTo(198, 10)
     context.lineTo(198, 25)
-   
-    //wordines
-    context.moveTo(250, 100)
-    context.lineTo(300, 100)
-
 
     context.stroke();
+};
 
-  
-    
+const startNewGame = () => {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    currentword = words[randomIndex];
+
+    // draw word blanks
+    const wordblanks = document.getElementById('word-blanks');
+    wordblanks.innerHTML = '';
+    const wordlength = currentword.length;
+    for (let i = 0; i < wordlength; i++) {
+        
+        
+    }
 };
