@@ -13,7 +13,7 @@
     
 }
 .all-keyboard {
-   margin-top: 50px;
+   margin-top: 30px;
    width: 100%;
    text-align: center;
 }
@@ -30,3 +30,21 @@
 #player-gallow {
     margin-left: 200px;
 } 
+
+.wordblankltrs {
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 40px;
+    width: 40px;
+    margin-right: 2px;
+}
+
+#word-blanks {
+    margin-top: -25px;
+    padding-bottom: 30px;
+
+}

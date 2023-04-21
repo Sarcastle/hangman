@@ -92,6 +92,13 @@ document.addEventListener('DOMContentLoaded', e => {
     drawGallow();
 })
 
+const clearGallow = () => {
+
+};
+const drawHead = () => {
+
+const canvas = document.getElementById 
+};
 const drawGallow = () => {
     const canvas = document.getElementById('player-gallow');
     const context = canvas.getContext('2d');
@@ -115,17 +122,35 @@ const drawGallow = () => {
 
     context.stroke();
 };
+const clearCanvas = () => {
+    const canvas = document.getElementById('player-gallow');
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+};
+const setLabelMsg = (msg) => {
+    document.getElementById('lblGameStatus').innerText = msg.toUpperCase();
+};
+const drawLetters = (word) => {
+    const lettersdiv = document.getElementById('word-blanks');
+    lettersdiv.innerHTML = '';
+    const letterscount = word.length; 
+    for (let index = 0; index < letterscount; index++) {
+        const inputVar = document.createElement('input')
+        inputVar.readonly = true;
+        inputVar.className = 'wordblankltrs';
+        inputVar.id = `hm-word-blanks${index}`;
+        lettersdiv.appendChild(inputVar);
+    }
+}; 
+const reEnableLetterBtns = () => {
 
+};
 const startNewGame = () => {
     const randomIndex = Math.floor(Math.random() * words.length);
-    currentword = words[randomIndex];
-
-    // draw word blanks
-    const wordblanks = document.getElementById('word-blanks');
-    wordblanks.innerHTML = '';
-    const wordlength = currentword.length;
-    for (let i = 0; i < wordlength; i++) {
-        
-        
-    }
+    currentword = words[randomIndex].toUpperCase();
+    setLabelMsg('Click Letters to Guess the Word');
+    clearCanvas();
+    drawGallow();
+    drawLetters(currentword);
+    reEnableLetterBtns();
 };
