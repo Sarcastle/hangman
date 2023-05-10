@@ -93,12 +93,84 @@ document.addEventListener('DOMContentLoaded', e => {
 })
 
 const clearGallow = () => {
-
+    const canvas = document.getElementById('player-gallow');
+    if (canvas.getContext('2d')) {
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
 };
+
 const drawHead = () => {
+    const canvas = document.getElementById('player-gallow');
+    const context = canvas.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = 'black';
+        context.lineWidth = 3;
+        context.arc(200, 50, 30, 0, Math.PI * 2, true);
+        context.stroke();
+    };
 
-const canvas = document.getElementById 
+const drawBody = () => {
+    const canvas = document.getElementById('player-gallow');
+    const context = canvas.getContext('2d');
+    context.beginPath();
+    context.moveTo(200, 80);
+    context.lineTo(200, 200);
+    context.strokeStyle = 'black';
+    context.stroke();   
 };
+
+const drawLeftArm = () => {
+    const canvas = document.getElementById('player-gallow');
+    const context = canvas.getContext('2d')
+        context.beginPath();
+        context.strokeStyle = 'black';
+        context.linewidth = 3;
+        context.moveTo(200, 90);
+        context.lineTo(150, 130);
+        context.stroke();
+    };
+
+const drawRightArm = () => {
+    const canvas = document.getElementById('player-gallow');
+    const context = canvas.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = 'black';
+        context.linewidth = 3;
+        context.moveTo(200, 90);
+        context.lineTo(250, 130);
+        context.stroke();
+};
+
+const drawLeftLeg = () => {
+    const canvas = document.getElementById('player-gallow');
+    const context = canvas.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = 'black';
+        context.linewidth = 3;
+        context.moveTo(200, 200);
+        context.lineTo(150, 280);
+        context.stroke();
+};
+
+const drawRightLeg = () => {
+    const canvas = document.getElementById('player-gallow');
+    const context = canvas.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = 'black';
+        context.linewidth = 3;
+        context.moveTo(200, 200);
+        context.lineTo(250, 280);
+        context.stroke();
+}
+const drawHappyFace = () => {
+
+};
+
+const drawDeadFace = () => {
+    
+}
+
 const drawGallow = () => {
     const canvas = document.getElementById('player-gallow');
     const context = canvas.getContext('2d');
@@ -117,19 +189,22 @@ const drawGallow = () => {
     context.lineTo(80, 299)
     
     //nubline
-    context.moveTo(198, 10)
-    context.lineTo(198, 25)
+    context.moveTo(198.5, 10)
+    context.lineTo(198.5, 20)
 
     context.stroke();
 };
+
 const clearCanvas = () => {
     const canvas = document.getElementById('player-gallow');
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
 };
+
 const setLabelMsg = (msg) => {
     document.getElementById('lblGameStatus').innerText = msg.toUpperCase();
 };
+
 const drawLetters = (word) => {
     const lettersdiv = document.getElementById('word-blanks');
     lettersdiv.innerHTML = '';
@@ -141,10 +216,12 @@ const drawLetters = (word) => {
         inputVar.id = `hm-word-blanks${index}`;
         lettersdiv.appendChild(inputVar);
     }
-}; 
+};
+
 const reEnableLetterBtns = () => {
 
 };
+
 const startNewGame = () => {
     const randomIndex = Math.floor(Math.random() * words.length);
     currentword = words[randomIndex].toUpperCase();
