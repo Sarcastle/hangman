@@ -1,6 +1,6 @@
 let currentword = '';
 let lettersGuessed = '';
-let missedGuesses = 0;
+let badguess = 0;
 let playingGame = false;
 let wordBank = [];
 
@@ -258,6 +258,7 @@ const drawLetters = (word) => {
         inputVar.id = `hm-word-blanks${index}`;
         lettersdiv.appendChild(inputVar);
     }
+    
 };
 
 const btnLetterClick = (letterBeingPassedIn) => { 
@@ -268,11 +269,11 @@ const btnLetterClick = (letterBeingPassedIn) => {
     let mybutton = document.getElementById(`btn${letterBeingPassedIn}`)
     mybutton.disabled = true;
 
-    const foundLetter = currentword.includes(letterBeingPassedIn);
+    const foundLetter = currentword.toLowerCase().includes(letterBeingPassedIn.toLowerCase());
     if (foundLetter) {
 
     } else {
-        let badguess = 0;
+        
         badguess++;
         if (badguess == 1) {
             drawHead();
@@ -293,16 +294,20 @@ const btnLetterClick = (letterBeingPassedIn) => {
     }
 
         if (badguess ==7) {
-            document.getElementById('lblMessege').innerText = 'You lost! Click New Game button to play again';
+            document.getElementById('lblGameStatus').innerText = 'You lost! Click New Game button to play again';
+            playingGame = false;
         } else if (areAllLettersGuessed) {
                drawHappyFace(); //drawhappyface
                //game is over set messege to "you win"
-        }
-
-};
-
-
-const reEnableLetterBtns = () => {
+            document.getElementById('lblGameStatus').innerText = 'You win! Click New Game button to play again';
+            for (let i = 0; i < currentword.length; i++) {
+                const letter = document.getElementById(`hm-placeholder${i}`).value;
+                if (letter !== currentword[i]) {
+                    return false;
+                }
+            }
+            return true;
+        };
 
 };
 
@@ -313,9 +318,8 @@ const startNewGame = () => {
     clearCanvas();
     drawGallow();
     drawLetters(currentword);
-    reEnableLetterBtns();
     playingGame = true;
-    missedGuesses = 0;
+    badguess = 0;
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     for (let index = 0; index < alphabet.length; index++) {
         document.getElementById(`btn${alphabet[index]}`).disabled = false;   
