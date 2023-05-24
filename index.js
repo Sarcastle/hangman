@@ -268,17 +268,16 @@ const btnLetterClick = (letterBeingPassedIn) => {
     console.log(letterBeingPassedIn);
     let mybutton = document.getElementById(`btn${letterBeingPassedIn}`)
     mybutton.disabled = true;
-
+    lettersGuessed += letterBeingPassedIn;
     const foundLetter = currentword.toLowerCase().includes(letterBeingPassedIn.toLowerCase());
     if (foundLetter) {
-
+        revealLetter(letterBeingPassedIn);
     } else {
         
         badguess++;
         if (badguess == 1) {
             drawHead();
-        }
-        else if (badguess == 2) {
+        }else if (badguess == 2) {
             drawBody();
         }else if (badguess ==3) {
             drawLeftArm();
@@ -293,28 +292,22 @@ const btnLetterClick = (letterBeingPassedIn) => {
         }
     }
 
-        if (badguess ==7) {
-            document.getElementById('lblGameStatus').innerText = 'You lost! Click New Game button to play again';
-            playingGame = false;
-        } else if (areAllLettersGuessed) {
-               drawHappyFace(); //drawhappyface
-               //game is over set messege to "you win"
-               playingGame = false;
-            document.getElementById('lblGameStatus').innerText = 'You win! Click New Game button to play again';
-            for (let i = 0; i < currentword.length; i++) {
-                const letter = document.getElementById(`hm-placeholder${i}`).value;
-                if (letter !== currentword[i]) {
-                    return false;
-                }
-            }
-            return true;
-        };
+    if (badguess ==7) {
+        document.getElementById('lblGameStatus').innerText = 'You lost! Click New Game button to play again';
+        playingGame = false;
+    } else if (areAllLettersGuessed()) {
+       drawHead();
+       drawHappyFace(); 
+       playingGame = false;
+       document.getElementById('lblGameStatus').innerText = 'You win! Click New Game button to play again';
+    };
 
 };
 
 const startNewGame = () => {
     const randomIndex = Math.floor(Math.random() * words.length);
     currentword = words[randomIndex].toUpperCase();
+    lettersGuessed = '';
     setLabelMsg('Click Letters to Guess the Word');
     clearCanvas();
     drawGallow();
@@ -328,11 +321,21 @@ const startNewGame = () => {
 };
 
 const areAllLettersGuessed = () => {
-    for (let i = 0; i < currentword.length - 1; i++); {
+    for (let i = 0; i < currentword.length; i++) {
         const currentwordletter = currentword[i];
         if (!lettersGuessed.includes(currentwordletter)) {
-        return false;
-     }
+            return false;
+        }
     } 
-        return true;
+    return true;
+};
+
+const revealLetter = (letter) => {
+    for (let i = 0; i < currentword.length; i++) {
+        const currentwordletter = currentword[i];
+        if (letter.toLowerCase() === currentwordletter.toLowerCase()) {
+            const inputvar = document.getElementById(`hm-word-blanks${i}`);
+            inputvar.value = currentwordletter;
+        }
+    }
 };
