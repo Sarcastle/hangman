@@ -299,6 +299,7 @@ const btnLetterClick = (letterBeingPassedIn) => {
         } else if (areAllLettersGuessed) {
                drawHappyFace(); //drawhappyface
                //game is over set messege to "you win"
+               playingGame = false;
             document.getElementById('lblGameStatus').innerText = 'You win! Click New Game button to play again';
             for (let i = 0; i < currentword.length; i++) {
                 const letter = document.getElementById(`hm-placeholder${i}`).value;
